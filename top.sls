@@ -1,3 +1,3 @@
 base:
-  'haproxy':
+  'haproxy*':
     - haproxy
