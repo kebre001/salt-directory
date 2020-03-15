@@ -1,2 +1,2 @@
 include:
-  - package
+  - haproxy.package
