@@ -4,5 +4,5 @@ haproxy config:
    - source: salt://haproxy/haproxy.conf
    - template: jinja
    - user: root
-   - group: root
+   - group: wheel
    - mode: 644
