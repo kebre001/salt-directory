@@ -1,3 +1,4 @@
 Install haproxy:
   pkg.installed:
-    - haproxy
+    - pkgs:
+      - haproxy
