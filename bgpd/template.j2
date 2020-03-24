@@ -1,0 +1,39 @@
+# $OpenBSD: bgpd.conf,v 1.15 2018/11/17 17:22:38 deraadt Exp $
+# example bgpd configuration file, see bgpd.conf(5)
+
+# global configuration
+AS {{asn}} 
+
+router-id {{primary_ip}}
+listen on {{primary_ip}}
+
+network 192.168.0.1/24
+
+group "myGroup" {
+        announce IPv4 unicast
+        announce IPv6 none
+        announce restart no
+
+        neighbor 10.96.72.236 {
+                remote-as       65002
+                descr           "BGP-host-2 IPv4"
+                local-address   {{primary_ip}} 
+        }
+}
+
+### FILTERS
+# don't accept default from any peer
+deny quick from any prefix 0/0
+
+
+# filter out prefixes longer than 24 or shorter than 8 bits for IPv4
+# and longer than 48 or shorter than 16 bits for IPv6.
+#allow from any inet prefixlen 8 - 24
+#allow from any inet6 prefixlen 16 - 48
+
+# IBGP: allow all updates to and from our IBGP neighbors
+allow from ibgp
+allow to ibgp
+
+allow from any
+allow to any
