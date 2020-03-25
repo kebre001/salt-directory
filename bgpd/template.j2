@@ -6,8 +6,9 @@ AS {{asn}}
 
 router-id {{primary_ip}}
 
-network 192.168.0.1/24
-network 192.168.1.1/24
+{% for network in network %}
+network {{network}}
+{% endfor %}
 
 group "wireguard" {
         announce IPv4 unicast
@@ -15,10 +16,12 @@ group "wireguard" {
         
         local-address   {{primary_ip}} 
 
-        neighbor 10.96.72.236 {
-                remote-as       65002
-                descr           "BGP-host-2 IPv4"
+        {% for neighbor in neighbors %}
+        neighbor {{neighbor["ip"]}}{
+                remote-as       {{neighbor["asn"]}}
+                descr           "{{neighbor["description"]}}"
         }
+        {% endfor %}
 }
 
 ### FILTERS
