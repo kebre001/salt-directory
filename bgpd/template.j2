@@ -5,19 +5,19 @@
 AS {{asn}} 
 
 router-id {{primary_ip}}
-listen on {{primary_ip}}
 
 network 192.168.0.1/24
+network 192.168.1.1/24
 
-group "myGroup" {
+group "wireguard" {
         announce IPv4 unicast
         announce IPv6 none
-        announce restart no
+        
+        local-address   {{primary_ip}} 
 
         neighbor 10.96.72.236 {
                 remote-as       65002
                 descr           "BGP-host-2 IPv4"
-                local-address   {{primary_ip}} 
         }
 }
 
@@ -32,8 +32,8 @@ deny quick from any prefix 0/0
 #allow from any inet6 prefixlen 16 - 48
 
 # IBGP: allow all updates to and from our IBGP neighbors
-allow from ibgp
-allow to ibgp
+#allow from ibgp
+#allow to ibgp
 
 allow from any
 allow to any
