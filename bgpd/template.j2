@@ -2,27 +2,29 @@
 # example bgpd configuration file, see bgpd.conf(5)
 
 # global configuration
-AS {{asn}} 
+AS {{bgp["asn"]}} 
 
-router-id {{primary_ip}}
+router-id {{bgp["router-id"]}}
 
-{% for network in network %}
+{% for network in bgp["network"] %}
 network {{network}}
 {% endfor %}
 
-group "wireguard" {
+{% for group in bgp["groups"] %}
+group "{{group["name"]}}" {
         announce IPv4 unicast
         announce IPv6 none
         
         local-address   {{primary_ip}} 
 
-        {% for neighbor in neighbors %}
+        {% for neighbor in group["neighbors"] %}
         neighbor {{neighbor["ip"]}}{
                 remote-as       {{neighbor["asn"]}}
                 descr           "{{neighbor["description"]}}"
         }
         {% endfor %}
 }
+{% endfor %}
 
 ### FILTERS
 # don't accept default from any peer
