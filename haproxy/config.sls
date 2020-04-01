@@ -11,9 +11,9 @@ haproxy.conf:
 {{certificate}}.pem:
  file.managed:
    - name: /usr/local/etc/haproxy/{{certificate}}.pem
-   - contents: |
-      {{attr["public_key"]}}
-      {{attr["private_key"]}}
+   - contents:
+      - {{attr["public_key"]}}
+      - {{attr["private_key"]}}
    - makedirs: True
    - user: root
    - group: wheel
