@@ -7,7 +7,7 @@ haproxy.conf:
    - group: wheel
    - mode: 644
 
-{% for certificate, attr in pillar["certificates"].iteritems() %}
+{% for certificate, attr in pillar["certificates"].items() %}
 {{certificate}}.pem:
  file.managed:
    - name: /usr/local/etc/haproxy/{{certificate}}.pem
