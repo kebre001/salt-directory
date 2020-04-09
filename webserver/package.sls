@@ -1,5 +1,5 @@
 include:
-  - php.packages
+  - php.package
 
 Install nginx:
   pkg.installed:
