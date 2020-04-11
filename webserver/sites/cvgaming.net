@@ -1,7 +1,6 @@
 server {
   listen 80;
-  listen 81 http2 proxy_protocol;
-  listen 443 ssl http2;
+  
   server_name cvgaming.net;
 
   client_max_body_size 20M;
@@ -9,8 +8,8 @@ server {
   root /var/www/kebre001/cvgaming.net/web;
   index index.php index.html index.htm;
 
-  ssl_certificate       /usr/local/etc/nginx/ssl/star_cvgaming_net.pem;
-  ssl_certificate_key   /usr/local/etc/nginx/ssl/star_cvgaming_net.key;
+  #ssl_certificate       /usr/local/etc/nginx/ssl/star_cvgaming_net.pem;
+  #ssl_certificate_key   /usr/local/etc/nginx/ssl/star_cvgaming_net.key;
 
   access_log    /var/www/kebre001/cvgaming.net/logs/access.log main;
   error_log     /var/www/kebre001/cvgaming.net/logs/error.log;
