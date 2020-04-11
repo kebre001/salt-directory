@@ -12,25 +12,25 @@ php configuration:
   file.managed:
     - name: /usr/local/etc/php/99-custom.ini
     - content: |
-      display_errors=Off
-      safe_mode=Off
-      safe_mode_exec_dir=
-      safe_mode_allowed_env_vars=PHP_
-      expose_php=Off
-      log_errors=On
-      error_log=/var/log/nginx/php.scripts.log
-      register_globals=Off
-      cgi.force_redirect=0
-      file_uploads=On
-      allow_url_fopen=On
-      sql.safe_mode=Off
-      disable_functions=show_source, system, shell_exec, passthru, proc_nice, exec, popen
-      max_execution_time=60
-      memory_limit=128M
-      upload_max_filesize=16M
-      post_max_size=16M
-      cgi.fix_pathinfo=0
-      sendmail_path=/usr/sbin/sendmail -fwebmaster@localhost -t
+        display_errors=Off
+        safe_mode=Off
+        safe_mode_exec_dir=
+        safe_mode_allowed_env_vars=PHP_
+        expose_php=Off
+        log_errors=On
+        error_log=/var/log/nginx/php.scripts.log
+        register_globals=Off
+        cgi.force_redirect=0
+        file_uploads=On
+        allow_url_fopen=On
+        sql.safe_mode=Off
+        disable_functions=show_source, system, shell_exec, passthru, proc_nice, exec, popen
+        max_execution_time=60
+        memory_limit=128M
+        upload_max_filesize=16M
+        post_max_size=16M
+        cgi.fix_pathinfo=0
+        sendmail_path=/usr/sbin/sendmail -fwebmaster@localhost -t
 
 php-fpm configuration:
   file.managed:
