@@ -8,4 +8,5 @@ site_{{file}}:
   file.managed:
     - name: /usr/local/etc/nginx/sites-enabled/{{file}}
     - source: salt://webserver/sites/{{file}}
+    - makedirs: True
 {% endfor %}
