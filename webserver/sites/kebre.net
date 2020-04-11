@@ -1,0 +1,36 @@
+server {
+    listen       80;
+    server_name  kebre.net;
+
+    root /var/www/kebre001/kebre.net/web;
+
+#    location / {
+#        proxy_pass http://172.16.4.91;
+#        proxy_set_header Host $host;
+##        proxy_set_header X-Real-IP $remote_addr;
+#        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#        proxy_set_header X-Forwarded-Proto $scheme;
+#    }
+
+    location / {
+	index index.php;
+	# This is cool because no php is touched for static content.
+        # include the "?$args" part so non-default permalinks doesn't break when using query string
+        try_files $uri $uri/ /index.php?$args;
+	#try_files $uri $uri/ /blog/index.php?q=$uri&$args;
+    }
+
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php73-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include /usr/local/etc/nginx/fastcgi_params;
+    }
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+        expires max;
+        log_not_found off;
+    }
+
+}
