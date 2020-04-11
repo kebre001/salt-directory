@@ -3,6 +3,11 @@ nginx configuration:
     - name: /usr/local/etc/nginx/nginx.conf
     - source: salt://webserver/nginx.conf
 
+nginx service:
+  service.running:
+    - name: nginx
+    - enable: True
+
 {% for file in pillar["websites"] %}
 site_{{file}}:
   file.managed:
