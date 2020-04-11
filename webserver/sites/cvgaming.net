@@ -44,7 +44,7 @@ location ~^(/uploads/emoticons/).*.(jpg|jpeg|gif|png)$ {
   location ~ \.php$ {
     #keepalive_timeout 0;
     fastcgi_split_path_info ^(.+\.php)(/.+)$;
-    fastcgi_pass unix:/var/run/php73-fpm.sock;
+    fastcgi_pass unix:/var/run/php-fpm.sock;
     #fastcgi_pass fastcgi_php;
     fastcgi_index index.php;
     fastcgi_param SCRIPT_FILENAME $request_filename;
