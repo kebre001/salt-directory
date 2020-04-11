@@ -8,6 +8,11 @@ nginx service:
     - name: nginx
     - enable: True
 
+php service:
+  service.running:
+    - name: php-fpm
+    - enable: True
+
 {% for file in pillar["websites"] %}
 site_{{file}}:
   file.managed:
