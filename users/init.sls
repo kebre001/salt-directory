@@ -1,4 +1,4 @@
-{% for user in pillar.get('users', {}).items() %}
+{% for user in pillar.get('users', {})%}
 Add user {{user}}:
   user.present:
     - name: {{user["name"]}}
