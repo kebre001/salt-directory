@@ -13,7 +13,7 @@ haproxy.conf:
    - name: /usr/local/etc/haproxy/{{certificate}}.pem
    - contents_pillar:
      - certificates:{{certificate}}:public_key
-     - certificates:{{certificate}}:priate_key
+     - certificates:{{certificate}}:private_key
    - makedirs: True
    - user: root
    - group: wheel
