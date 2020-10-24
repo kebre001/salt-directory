@@ -9,4 +9,9 @@
   ip4 = inherit;
   {% endif -%}
   mount.fstab = "${jailbase}/${name}/fstab.jail";
+  {% if options in jail -%}
+    {% for option in jail.options -%}
+    {{option}}
+    {% endfor -%}
+  {% endif -%}
 }
