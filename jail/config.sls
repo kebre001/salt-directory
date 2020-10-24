@@ -20,7 +20,7 @@
 /etc/jail.conf-{{jail}}:
     file.blockreplace:
         - name: /etc/jail.conf
-        - source: salt://jail/jails.conf.j2
+        - source: salt://jail/jail_template.j2
         - template: jinja
         - defaults: 
             name: jail
