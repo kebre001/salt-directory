@@ -22,7 +22,7 @@
         - name: /etc/jail.conf
         - source: salt://jail/jails.conf.j2
         - template: jinja
-        - defauls: 
+        - defaults: 
             name: jail
             jail: attr
         - marker_start: "#JAIL-{{jail|upper}}-DO-NOT-EDIT-"
