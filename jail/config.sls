@@ -23,8 +23,8 @@
         - source: salt://jail/jail_template.j2
         - template: jinja
         - defaults: 
-            name: jail
-            jail: attr
+            name: {{jail}}
+            jail: {{attr}}
         - marker_start: "#JAIL-{{jail|upper}}-DO-NOT-EDIT-"
         - marker_end: "#END-{{jail|upper}}#"
         - append_if_not_found: True
