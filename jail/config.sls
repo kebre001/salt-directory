@@ -3,7 +3,7 @@
     file.blockreplace:
         - name: /etc/jail.conf
         - marker_start: "###START-JAIL-DO-NOT-EDIT###"
-        - marker_start: "###END-JAIL###"
+        - marker_end: "###END-JAIL###"
         - prepend_if_not_found: True
         - content: |
             exec.start = "/bin/sh /etc/rc";
