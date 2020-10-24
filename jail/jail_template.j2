@@ -1,0 +1,11 @@
+{{name}} {
+  jid = 53;
+  host.hostname = "{{name}}";
+  {% if "ip" in jail %}
+  ip4 = new;
+  ip4.addr = "{{jail.ip}}";
+  {% else %}
+  ip4 = inherit;
+  {% endif %}
+  mount.fstab = "${jailbase}/${name}/fstab.jail";
+}
