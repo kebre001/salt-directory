@@ -1,0 +1,29 @@
+server {
+  listen       80;
+  server_name  cdn.kebre.net;
+  root /mnt;
+
+  access_log /var/www/kebre001/kebre.net/logs/cdn-access.log;
+
+  location / {
+    autoindex off;
+  }
+
+  location /OpenBSD {
+    autoindex on;
+    expires max;
+  }
+
+  location /pub {
+    autoindex on;
+  }
+
+  location ~* .(gif|jpg|jpeg|png|wmv|avi|mpg|mpeg|mp4|htm|html|js|css|mp3|swf|ico|flv|tgz)$ {
+    expires max;
+    proxy_set_header  X-Real-IP  $remote_addr;
+    #proxy_pass http://yourdomain.com;
+    proxy_ignore_headers X-Accel-Expires Expires Cache-Control;
+    #proxy_store /var/www/cache$uri;
+    #proxy_store_access user:rw group:rw all:r;
+  }
+}

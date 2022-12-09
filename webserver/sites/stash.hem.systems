@@ -1,0 +1,24 @@
+upstream backend {
+        server 172.16.4.146:9999;
+}
+server {
+    listen       80;
+    #listen 443 ssl http2;
+    server_name  stash.hem.systems;
+
+    #ssl_certificate       /usr/local/etc/nginx/ssl/star_cvgaming_net.pem;
+    #ssl_certificate_key   /usr/local/etc/nginx/ssl/star_cvgaming_net.key;
+
+    location / {
+    proxy_pass http://backend;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Host $server_name;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Ssl on;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout  90;
+    }
+
+
+}
